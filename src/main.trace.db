@@ -1,0 +1,186 @@
+2024-07-28 15:49:19.436359+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "ID" not found; SQL statement:
+CREATE TABLE Users(
+user_id UUID DEFAULT RANDOM_UUID() PRIMARY KEY,
+full_name VARCHAR(250),
+mob_num  VARCHAR(250),
+pan_num  VARCHAR(250),created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+is_active BOOLEAN DEFAULT TRUE,
+manager_id UUID,
+FOREIGN KEY (manager_id) REFERENCES manager(id)
+) [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.getColumn(Table.java:759)
+	at org.h2.table.IndexColumn.mapColumns(IndexColumn.java:184)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:219)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:74)
+	at org.h2.command.ddl.AlterTable.update(AlterTable.java:46)
+	at org.h2.command.ddl.CommandWithColumns.createConstraints(CommandWithColumns.java:83)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:134)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1345)
+	at org.h2.server.web.WebApp.query(WebApp.java:1143)
+	at org.h2.server.web.WebApp.query(WebApp.java:1119)
+	at org.h2.server.web.WebApp.process(WebApp.java:245)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:177)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-07-28 16:22:42.619678+05:30 jdbc[15]: null
+org.h2.message.DbException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:218)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:135)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:288)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:811)
+	at org.h2.server.web.WebApp.login(WebApp.java:1039)
+	at org.h2.server.web.WebApp.process(WebApp.java:227)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:177)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: The connection was not closed by the application and is garbage collected [90018-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 47 more
+2024-07-28 16:35:08.216735+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found; SQL statement:
+select u1_0.user_id,u1_0.created_at,u1_0.full_name,u1_0.is_active,u1_0.manager_id,u1_0.mob_num,u1_0.pan_num,u1_0.updated_at from users u1_0 [42102-224]
+2024-07-28 16:42:10.426866+05:30 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (candidates are: "Users"); SQL statement:
+insert into users(full_name,mob_num,pan_num,created_at,is_active,manager_id) values
+('Rock', '1234567890', 'PVVPL8058G', '2024-07-26 15:44:44.028787', '2024-07-26 15:44:44.028787', TRUE, '0a66bb78-efd5-46ec-aa0d-3142dc8d14ed'),
+('Sai', '1234567890', 'PVVPL8058J', '2024-07-26 15:44:44.028787', '2024-07-26 15:44:44.028787', TRUE, 'bd436066-931a-4d61-a57a-f305e664396d') [42103-224]
+2024-07-28 16:42:38.551382+05:30 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (candidates are: "Users"); SQL statement:
+insert into users(full_name,mob_num,pan_num,created_at,is_active,manager_id) values
+('Rock', '1234567890', 'PVVPL8058G', '2024-07-26 15:44:44.028787', '2024-07-26 15:44:44.028787', TRUE, '0a66bb78-efd5-46ec-aa0d-3142dc8d14ed') [42103-224]
+2024-07-28 16:43:07.312666+05:30 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (candidates are: "Users"); SQL statement:
+insert into users(full_name,mob_num,pan_num,created_at,is_active,manager_id) values
+('Rock', '1234567890', 'PVVPL8058G', '2024-07-26 15:44:44.028787', '2024-07-26 15:44:44.028787', TRUE, '0a66bb78-efd5-46ec-aa0d-3142dc8d14ed') [42103-224]
+2024-07-28 16:43:21.148195+05:30 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "insert into [*]user(full_name,mob_num,pan_num,created_at,is_active,manager_id) values\000d\000a('Rock', '1234567890', 'PVVPL8058G', '2024-07-26 15:44:44.028787', '2024-07-26 15:44:44.028787', TRUE, '0a66bb78-efd5-46ec-aa0d-3142dc8d14ed')"; expected "identifier"; SQL statement:
+insert into user(full_name,mob_num,pan_num,created_at,is_active,manager_id) values
+('Rock', '1234567890', 'PVVPL8058G', '2024-07-26 15:44:44.028787', '2024-07-26 15:44:44.028787', TRUE, '0a66bb78-efd5-46ec-aa0d-3142dc8d14ed') [42001-224]
+2024-07-28 16:43:51.817845+05:30 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found; SQL statement:
+Drop table users [42102-224]
+2024-07-28 16:44:03.813689+05:30 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "Drop table [*]user"; expected "identifier"; SQL statement:
+Drop table user [42001-224]
+2024-07-28 16:44:17.399728+05:30 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "Drop table use[*]""Users""r"; SQL statement:
+Drop table use"Users"r [42000-224]
+2024-07-28 16:45:07.570588+05:30 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (candidates are: "Users"); SQL statement:
+SELECT * FROM Users [42103-224]
+2024-07-28 16:45:22.124472+05:30 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "users" not found; SQL statement:
+drop table "users" [42102-224]
+2024-07-28 16:48:37.705359+05:30 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE IF NOT EXISTS [*]USER (\000d\000a    user_id UUID primary key,\000d\000a    full_name VARCHAR(255) NOT NULL,\000d\000a    mob_num VARCHAR(15) NOT NULL,\000d\000a    pan_num VARCHAR(10) UNIQUE NOT NULL,\000d\000a    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\000d\000a    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\000d\000a    is_active BOOLEAN DEFAULT TRUE,\000d\000a    manager_id UUID,\000d\000a    FOREIGN KEY (manager_id) REFERENCES manager(manager_id)\000d\000a)"; expected "identifier"; SQL statement:
+CREATE TABLE IF NOT EXISTS USER (
+    user_id UUID primary key,
+    full_name VARCHAR(255) NOT NULL,
+    mob_num VARCHAR(15) NOT NULL,
+    pan_num VARCHAR(10) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    is_active BOOLEAN DEFAULT TRUE,
+    manager_id UUID,
+    FOREIGN KEY (manager_id) REFERENCES manager(manager_id)
+) [42001-224]
+2024-07-28 16:48:48.708682+05:30 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE [*]USER (\000d\000a    user_id UUID primary key,\000d\000a    full_name VARCHAR(255) NOT NULL,\000d\000a    mob_num VARCHAR(15) NOT NULL,\000d\000a    pan_num VARCHAR(10) UNIQUE NOT NULL,\000d\000a    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\000d\000a    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,\000d\000a    is_active BOOLEAN DEFAULT TRUE,\000d\000a    manager_id UUID,\000d\000a    FOREIGN KEY (manager_id) REFERENCES manager(manager_id)\000d\000a)"; expected "identifier"; SQL statement:
+CREATE TABLE USER (
+    user_id UUID primary key,
+    full_name VARCHAR(255) NOT NULL,
+    mob_num VARCHAR(15) NOT NULL,
+    pan_num VARCHAR(10) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    is_active BOOLEAN DEFAULT TRUE,
+    manager_id UUID,
+    FOREIGN KEY (manager_id) REFERENCES manager(manager_id)
+) [42001-224]
+2024-07-29 12:39:34.000033+05:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found; SQL statement:
+select u1_0.user_id,u1_0.created_at,u1_0.full_name,u1_0.is_active,u1_0.manager_id,u1_0.mob_num,u1_0.pan_num,u1_0.updated_at from users u1_0 where u1_0.user_id=? [42102-224]
